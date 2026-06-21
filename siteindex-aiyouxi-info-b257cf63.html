@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <title>索引与整理 · 爱游戏资料站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f8f9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1b2b2e;
+            padding: 1.5rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-grid {
+            max-width: 1240px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* 轻柔叙事开场 */
+        .opening-sentence {
+            background: linear-gradient(145deg, #e3f0f0 0%, #d4e9ea 100%);
+            border-left: 8px solid #2c9a9f;
+            padding: 2rem 2.2rem 2rem 2.4rem;
+            border-radius: 28px 8px 28px 8px;
+            box-shadow: 0 12px 24px -10px rgba(44, 154, 159, 0.15);
+            font-size: 1.2rem;
+            font-weight: 360;
+            letter-spacing: 0.01em;
+            line-height: 1.8;
+        }
+
+        .opening-sentence strong {
+            font-weight: 550;
+            color: #1f6c70;
+        }
+
+        /* 承接段落——资料索引的述说 */
+        .bridge-paragraph {
+            background: white;
+            padding: 2rem 2rem 2.2rem;
+            border-radius: 24px;
+            box-shadow: 0 6px 18px rgba(0, 30, 35, 0.04);
+            border: 1px solid #dae9ec;
+            margin: 0.5rem 0 0.2rem;
+            position: relative;
+        }
+
+        .bridge-paragraph::before {
+            content: "📂 索引视角";
+            position: absolute;
+            top: -12px;
+            left: 28px;
+            background: #f4f8f9;
+            padding: 0 14px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c9a9f;
+            letter-spacing: 0.04em;
+            border-radius: 40px;
+        }
+
+        .bridge-paragraph p {
+            margin-bottom: 1.2rem;
+        }
+
+        .bridge-paragraph p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-link {
+            color: #1b7b80;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 2px solid rgba(44, 154, 159, 0.25);
+            transition: border-color 0.2s, background 0.15s;
+            padding: 0 2px;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #2c9a9f;
+            background: #e5f3f4;
+        }
+
+        /* 网格卡片——特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin: 0.5rem 0 0.8rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 28px 10px 28px 10px;
+            padding: 1.5rem 1.2rem 1.8rem;
+            box-shadow: 0 8px 14px -8px rgba(44, 90, 95, 0.08);
+            border: 1px solid #dae6e8;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 28px -14px rgba(44, 154, 159, 0.18);
+            border-color: #b7d5d9;
+        }
+
+        .feature-icon {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 540;
+            color: #1c5559;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .feature-card p {
+            font-size: 0.94rem;
+            color: #2d474b;
+            line-height: 1.6;
+        }
+
+        /* 温和结尾段落 */
+        .gentle-closing {
+            background: #f3fafb;
+            border-radius: 30px 8px 30px 8px;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #c8dee1;
+            box-shadow: 0 4px 12px rgba(44, 154, 159, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .gentle-closing p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #1b3e41;
+        }
+
+        .gentle-closing .closing-signature {
+            font-size: 0.92rem;
+            color: #3b6b6f;
+            border-top: 1px dashed #b7d2d6;
+            padding-top: 1rem;
+            margin-top: 0.2rem;
+            text-align: right;
+        }
+
+        /* 响应式细化 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem 2.5rem;
+            }
+
+            .opening-sentence {
+                font-size: 1.05rem;
+                padding: 1.5rem 1.4rem;
+                border-left-width: 6px;
+            }
+
+            .bridge-paragraph {
+                padding: 1.8rem 1.2rem 1.8rem;
+            }
+
+            .bridge-paragraph::before {
+                left: 16px;
+                font-size: 0.75rem;
+                padding: 0 12px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.9rem;
+            }
+
+            .feature-card {
+                padding: 1.2rem 1rem 1.4rem;
+            }
+
+            .gentle-closing {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                border-radius: 24px 6px 24px 6px;
+            }
+        }
+
+        /* 辅助间距 */
+        .spacer-sm {
+            height: 0.2rem;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6a8f93;
+            margin-top: 1.8rem;
+            border-top: 1px solid #d2e3e6;
+            padding-top: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-grid">
+        <!-- 开场短句 -->
+        <div class="opening-sentence">
+            <strong>一部游戏的索引，就是它的第二层叙事。</strong><br>
+            信息被妥善整理之后，每一款作品都不再是孤岛，而是彼此呼应的坐标。
+        </div>
+
+        <!-- 承接段落：从资料整理和索引切入 -->
+        <div class="bridge-paragraph">
+            <p>
+                当游戏库越来越庞大，真正有价值的不只是“玩过什么”，而是“如何找回当时的脉络”。<br>
+                这正是 <a href="https://siteindex-aiyouxi.com.cn" class="inline-link">爱游戏</a> 所聚焦的方向——借助结构化的信息索引，将零散的游戏资料、版本记录、背景考据聚合成可追溯的知识节点。无论是早期作品的开发逸闻，还是系列之间的暗线关联，一份清晰的索引往往比碎片信息更能呈现全貌。
+            </p>
+            <p>
+                从目录学角度看，对游戏内容的分类、标注与交叉引用，本身就是一种深度阅读的方式。站内围绕「游戏资料整理」展开，不追求流量式的热榜，更看重每一份记录的持久价值。
+            </p>
+        </div>
+
+        <!-- 特点网格卡片 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">📇</span>
+                <h3>结构化整理</h3>
+                <p>按系列、年代、主题构建多级索引，降低信息回溯成本。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔗</span>
+                <h3>关联性标注</h3>
+                <p>在条目之间建立参考链接，呈现剧情、设定与制作上的呼应。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📋</span>
+                <h3>来源可考</h3>
+                <p>每一条资料均标注原始出处或访谈依据，便于自行延伸查阅。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🧩</span>
+                <h3>长尾覆盖</h3>
+                <p>不只聚焦热门作品，也为冷门但有独特价值的游戏保留索引位置。</p>
+            </div>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="gentle-closing">
+            <p>
+                整理本身不是目的，而是为了在需要的时候，能顺着一条安静的线索走回那个世界。如果你也习惯在游玩之外保留一份资料笔记，或许 <a href="https://siteindex-aiyouxi.com.cn" class="inline-link">爱游戏</a> 的索引思路能带来一些启发。
+            </p>
+            <p>
+                索引让记忆不散落，也让热爱有迹可循。
+            </p>
+            <div class="closing-signature">
+                —— 一份持续更新的资料整理笔记
+            </div>
+        </div>
+
+        <div class="footnote">
+            基于知识型索引 · 不追踪 · 不推荐 · 仅整理
+        </div>
+    </div>
+</body>
+</html>
