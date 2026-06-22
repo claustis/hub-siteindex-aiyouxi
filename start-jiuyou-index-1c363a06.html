@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九游娱乐 · 轻量导航</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1e1e2a;
+      background: #f7f8fc;
+    }
+
+    a {
+      color: #b45f2e;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #8b4513;
+      text-decoration: underline;
+    }
+
+    .wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0a0a14 0%, #1e1b2a 70%, #2b253b 100%);
+      color: #edeff0;
+      padding: 60px 0 48px;
+      border-radius: 0 0 48px 48px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .hero-text {
+      flex: 2 1 320px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #cdccdd;
+      max-width: 520px;
+      margin-bottom: 20px;
+    }
+
+    .hero-nav-tag {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      background: rgba(255,255,255,0.06);
+      padding: 12px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-nav-tag span {
+      font-size: 0.95rem;
+      color: #bfbdd6;
+    }
+
+    .hero-nav-tag a {
+      color: #e5b082;
+      font-weight: 500;
+    }
+
+    .hero-highlight {
+      flex: 1 1 200px;
+      background: rgba(255,215,175,0.08);
+      border-left: 3px solid #b45f2e;
+      padding: 18px 22px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-highlight p {
+      font-size: 0.95rem;
+      color: #dad8ec;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight .site-label {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #f2dbbc;
+    }
+
+    /* 浅色正文区 */
+    .main-section {
+      background: #ffffff;
+      margin: 40px 0 24px;
+      padding: 36px 32px;
+      border-radius: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      margin-bottom: 28px;
+      color: #1a1726;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, #b45f2e 20%, #e9e2ec 100%);
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin: 32px 0 16px;
+    }
+
+    .scene-card {
+      background: #f6f5fa;
+      padding: 24px 20px;
+      border-radius: 24px;
+      transition: background 0.2s, box-shadow 0.2s;
+      border: 1px solid #eeeeff;
+    }
+
+    .scene-card:hover {
+      background: #f0eef7;
+      box-shadow: 0 8px 18px rgba(162, 118, 58, 0.06);
+    }
+
+    .scene-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #2c2640;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scene-card p {
+      color: #3d3b4a;
+      font-size: 0.95rem;
+    }
+
+    .faq-summary {
+      margin-top: 36px;
+      background: #f9f8fe;
+      border-radius: 28px;
+      padding: 28px 28px 20px;
+    }
+
+    .faq-summary h3 {
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #241f32;
+    }
+
+    .faq-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e4e1ec;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #2b263b;
+    }
+
+    .faq-a {
+      color: #514d61;
+      font-size: 0.92rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin: 48px 0 40px;
+      font-size: 0.88rem;
+      color: #6b677a;
+    }
+
+    .footer-note a {
+      font-weight: 500;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .hero {
+        padding: 40px 0 36px;
+        border-radius: 0 0 28px 28px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-nav-tag {
+        padding: 10px 16px;
+        gap: 8px 14px;
+        flex-wrap: wrap;
+      }
+
+      .main-section {
+        padding: 24px 18px;
+      }
+
+      .scene-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-summary {
+        padding: 20px 16px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero-highlight {
+        padding: 14px 16px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        flex-wrap: wrap;
+      }
+
+      .section-title::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- 深色头区 + 导航 -->
+    <header class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>九游娱乐 · 一眼了解</h1>
+          <p>一个轻量导航式介绍页，帮你快速识别网站用途、场景与常见问题。</p>
+          <div class="hero-nav-tag">
+            <span>🏷️ 核心站点</span>
+            <a href="https://start-jiuyou.com">九游娱乐</a>
+          </div>
+        </div>
+        <div class="hero-highlight">
+          <p>面向希望快速确认网站定位的用户</p>
+          <div class="site-label">九游娱乐</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 核心介绍 + 三个场景模块 + 常见说明 -->
+    <main class="main-section">
+      <h2 class="section-title">关于九游娱乐</h2>
+      <p style="font-size: 1.02rem; color: #322e41; margin-bottom: 12px;">
+        <a href="https://start-jiuyou.com">九游娱乐</a> 是一个综合性线上平台，致力于为用户提供多样化的休闲互动内容。无论是轻度放松、策略挑战还是社交探索，你都能在这里找到契合自己的节奏。平台界面直观、分类清晰，适合不同兴趣偏好的用户随时浏览。
+      </p>
+      <p style="color: #464358; margin-top: 8px;">
+        以下三个常见场景可以帮你更快理解它的主要方向，而 FAQ 摘要则解答一些初步疑问。
+      </p>
+
+      <!-- 三个场景模块 -->
+      <div class="scene-grid">
+        <div class="scene-card">
+          <h3>🎲 场景一 · 轻松一刻</h3>
+          <p>工作间隙或通勤路上，想找一些节奏轻快、无需长期投入的内容。九游娱乐收录了多种短时互动形式，点开即可沉浸，随时暂停也无压力。</p>
+        </div>
+        <div class="scene-card">
+          <h3>🧩 场景二 · 策略与思考</h3>
+          <p>对于喜欢规划、推演或解谜的用户，平台也提供了需要一定思考和判断的模块。你可以用零碎时间完成一局，也可以慢慢研究玩法细节。</p>
+        </div>
+        <div class="scene-card">
+          <h3>👥 场景三 · 社交与分享</h3>
+          <p>与朋友一起体验某些内容，或者通过排行榜、成就等间接互动。九游娱乐鼓励用户以轻松的方式交流心得，但不会过度强调竞争。</p>
+        </div>
+      </div>
+
+      <!-- 常见说明 (FAQ 摘要) -->
+      <div class="faq-summary">
+        <h3>💬 常见说明 · 快速了解</h3>
+
+        <div class="faq-item">
+          <div class="faq-q">Q：这个网站主要提供什么？</div>
+          <div class="faq-a">九游娱乐聚焦于线上休闲与轻度娱乐，包含多种风格的内容模块，整体定位偏向轻松、友好。</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Q：需要注册或付费吗？</div>
+          <div class="faq-a">大部分内容可以免费体验。部分进阶或个性化功能可能需要登录账户，具体以平台实际规则为准。</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Q：适合哪些人使用？</div>
+          <div class="faq-a">适合希望利用碎片时间放松、喜欢尝试不同互动形式的用户。年龄建议 18 岁以上。</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Q：使用前有什么需要注意？</div>
+          <div class="faq-a">建议合理分配时间，避免过度沉浸。九游娱乐不鼓励任何形式的成瘾行为，请根据个人情况适度参与。</div>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.95rem; color: #4f4b60;">
+          🔗 想深入了解？可直接访问 <a href="https://start-jiuyou.com">九游娱乐</a> 查看完整内容。
+        </p>
+      </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer-note">
+      <p>本页为轻量导航介绍，仅提供基础信息参考。<br>
+      实际功能以 <a href="https://start-jiuyou.com">九游娱乐</a> 平台为准。</p>
+      <p style="margin-top: 14px;">&copy; 简洁呈现 · 理性了解</p>
+    </footer>
+  </div>
+</body>
+</html>
