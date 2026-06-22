@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九游娱乐 · 杂志辑</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf9f7;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1e1e1e;
+      padding: 0 1rem;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 0 2.5rem;
+    }
+
+    /* hero — 杂志封面感 */
+    .hero {
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid #ddd9d0;
+      padding-bottom: 2rem;
+    }
+
+    .hero small {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #9b8f82;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #231f1b;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #4f4942;
+      max-width: 580px;
+      margin-top: 0.3rem;
+    }
+
+    .hero .meta-line {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.8rem;
+      color: #887e72;
+      margin-top: 1rem;
+      border-top: 1px solid #e6e0d8;
+      padding-top: 0.85rem;
+    }
+
+    /* 正文窄栏 */
+    .essay {
+      margin-bottom: 2.2rem;
+    }
+
+    .essay h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 2rem 0 0.75rem;
+      color: #1e1a16;
+      border-left: 2px solid #c8b8a8;
+      padding-left: 0.9rem;
+    }
+
+    .essay p {
+      margin-bottom: 1.25rem;
+      color: #2d2925;
+      text-align: justify;
+      word-break: break-word;
+    }
+
+    .essay p + p {
+      margin-top: -0.3rem;
+    }
+
+    .essay .highlight {
+      background: #f0ebe4;
+      padding: 0.1rem 0.3rem;
+      font-style: normal;
+    }
+
+    .quote-block {
+      margin: 2rem 0 2.2rem;
+      padding: 1.5rem 1.8rem;
+      background: #f4f0ea;
+      border-radius: 0;
+      border-left: 4px solid #b8a690;
+    }
+
+    .quote-block p {
+      font-size: 1rem;
+      color: #35302b;
+      margin-bottom: 0;
+      font-style: normal;
+    }
+
+    .quote-block .attribution {
+      display: block;
+      text-align: right;
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: #766b5f;
+    }
+
+    /* 特色卡片（极窄标签） */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .feature-item {
+      background: #ffffff;
+      padding: 1.2rem 1rem 1rem;
+      border: 1px solid #e5dfd7;
+      transition: background 0.15s ease;
+    }
+
+    .feature-item:hover {
+      background: #f8f5f0;
+    }
+
+    .feature-item .num {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #9b8a78;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-item h3 {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: #201d19;
+    }
+
+    .feature-item p {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #4a443d;
+      margin-bottom: 0;
+    }
+
+    .faq-mini {
+      margin: 2.5rem 0 2rem;
+    }
+
+    .faq-mini details {
+      border-bottom: 1px solid #ddd9d0;
+      padding: 0.8rem 0;
+    }
+
+    .faq-mini details:first-of-type {
+      border-top: 1px solid #ddd9d0;
+    }
+
+    .faq-mini summary {
+      font-weight: 450;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #27231e;
+      padding: 0.2rem 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini summary::after {
+      content: "＋";
+      color: #b3a392;
+      font-size: 1.1rem;
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+
+    .faq-mini details[open] summary::after {
+      content: "–";
+      transform: rotate(180deg);
+    }
+
+    .faq-mini .answer {
+      color: #3b3630;
+      font-size: 0.9rem;
+      padding: 0.6rem 0 0.3rem;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      margin-top: 3.2rem;
+      padding: 1.8rem 0 1rem;
+      border-top: 1px solid #ddd7cf;
+      font-size: 0.9rem;
+      color: #4f4840;
+      text-align: left;
+    }
+
+    .footer-note strong {
+      font-weight: 500;
+      color: #1e1a16;
+    }
+
+    .footer-note a {
+      color: #3b332b;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #c2b6a8;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+
+    .footer-note a:hover {
+      color: #000;
+      text-decoration-color: #8a7b6b;
+    }
+
+    .footer-note .back-hint {
+      display: inline-block;
+      margin-top: 0.6rem;
+      background: #ede8e1;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      color: #3b342b;
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding: 2rem 0 2rem;
+      }
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+      .quote-block {
+        padding: 1.2rem 1.2rem;
+      }
+      .hero .meta-line {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 0 2rem;
+      }
+      .container {
+        padding-top: 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- hero 杂志题图 -->
+  <div class="hero">
+    <small>· 持续关注 · 辑录</small>
+    <h1>九游娱乐<br>再访与收藏之间</h1>
+    <p>一次浏览后的回访，一次有意识的订阅，逐渐构成日常中的稳定坐标。不必刻意记忆，只需保留一个入口。</p>
+    <div class="meta-line">
+      <span>卷首语</span>
+      <span>场景媒介</span>
+      <span>纸质感数字</span>
+    </div>
+  </div>
+
+  <!-- 正文三段 + 穿插 -->
+  <div class="essay">
+    <h2>一、重访：并非偶然</h2>
+    <p>在大量信息流中，一个平台被反复打开，往往不是因为推送的密集，而是因为它提供了一种不被打扰的稳定感。<a href="https://site-web-jiuyou.com" style="color:#3b332b; text-decoration: underline; text-underline-offset:2px; text-decoration-color:#b8a690;">九游娱乐</a>所构建的界面与内容节奏，恰恰迎合了这种“低心理负担的返回”——不会因为隔了一段时间没看而感到脱节，也不会因结构频繁变动而迷失路径。重访，成为安静的习惯。</p>
+
+    <div class="quote-block">
+      <p>“好的数字空间，让人愿意留一个书签，不是为了马上使用，而是为了知道它还在那里。”<span class="attribution">—— 界面阅读笔记，2025</span></p>
+    </div>
+
+    <h2>二、收藏夹里的一角</h2>
+    <p>浏览器的收藏栏、笔记应用的链接片段，或是桌面一个不起眼的快捷方式——收藏的本质，是对注意力资源的诚实分配。我们为用户创造的价值之一，是当用户将「九游娱乐」放入收藏夹以后，不必频繁清理或调整分类：它的内容具有长尾性和克制的更新频率，不与碎片化争抢时间，而是提供一种可回头的语境。收藏不是囤积，是信任的标记。</p>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="num">01</div>
+        <h3>保持结构稳定</h3>
+        <p>导航与分类长久一致，降低再次访问后的认知负担。</p>
+      </div>
+      <div class="feature-item">
+        <div class="num">02</div>
+        <h3>内容可追溯</h3>
+        <p>历史栏目与专题持续归档，不因改版而丢失旧文。</p>
+      </div>
+    </div>
+
+    <h2>三、关注，而非订阅噪音</h2>
+    <p>关注一个平台，可以不用绑定手机号、不需要开启所有通知。我们理解的持续关注，是用户自主选择回访的节奏——可能是每周末浏览一次，或是每次需要特定内容时径直打开。在<a href="https://site-web-jiuyou.com" style="color:#3b332b; text-decoration: underline; text-underline-offset:2px; text-decoration-color:#b8a690;">九游娱乐</a>，没有强制弹窗与红点刺激，只保留一种邀请式的存在：网站一直在那里，等待用户以自己的方式再次相遇。关注的形式有很多种，收藏是最安静的一种。</p>
+  </div>
+
+  <!-- FAQ 微型摘要 -->
+  <div class="faq-mini">
+    <details>
+      <summary>为何建议收藏而不是每次都搜索？</summary>
+      <div class="answer">搜索路径易受算法与结果排序影响，收藏夹提供了直达且不受干扰的通道。对于长期留存的平台，收藏等于创建了一个专属入口。</div>
+    </details>
+    <details>
+      <summary>回访时内容会有明显变化吗？</summary>
+      <div class="answer">主要栏目保持延续，更新部分会以标注形式呈现。你上次阅读的位置不会因为改版而消失，旧专题仍可通过归档查找。</div>
+    </details>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p><strong>九游娱乐</strong> · 一个值得持续关注的数字场所</p>
+    <p>若你已习惯通过收藏夹回访，或想将其加入长期浏览序列，可直接将上方链接存入常用位置。<br>
+    <span class="back-hint"># 不定期回访 · 关注而非打扰</span></p>
+  </div>
+</div>
+</body>
+</html>
